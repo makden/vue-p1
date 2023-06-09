@@ -6,6 +6,7 @@
       <images
         srcpath="https://mobilius-shop.ru/bitrix/templates/.default/components/bitrix/catalog.element/.default/images/no_photo.png"
         titletext="img"
+        @click="$emit('update:srcpath', $event.arrow.value)"
       />
     </div>
 

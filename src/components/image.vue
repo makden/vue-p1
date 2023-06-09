@@ -11,6 +11,7 @@ export default {
     srcpath: String,
     titletext: String,
   },
+  emits: ['update:srcpath'],
 };
 </script>
 
