@@ -4,15 +4,15 @@
 
     <div style="width: 200px">
       <images
-        srcpath="https://mobilius-shop.ru/bitrix/templates/.default/components/bitrix/catalog.element/.default/images/no_photo.png"
-        titletext="img"
-        @click="$emit('update:srcpath', $event.arrow.value)"
+        :srcpath="imgDef"
+        titletext="test"
+        :name="nameDef"
       />
     </div>
 
     <hr>
 
-    <arrow />
+    <arrow @nextImageEvent="nextImage" />
 </template>
 
 <script>
@@ -23,10 +23,31 @@ export default {
     images,
     arrow,
   },
+  data(){
+    return{
+      imgDef:"https://mobilius-shop.ru/bitrix/templates/.default/components/bitrix/catalog.element/.default/images/no_photo.png",
+      nameDef:"-=1100=-",
+      defaultImage:"",
+
+    }
+  },
   name: 'HelloWorld',
   props: {
-    msg: String
+    msg: String,
+  },
+  methods:{
+    nextImage(src){
+      if(this.defaultImage==""){
+        this.defaultImage=this.imgDef;
+      }
+      if(src){
+        this.imgDef = src;
+      }else{
+        this.imgDef = this.defaultImage;
+      }
+    }
   }
+
 }
 </script>
 

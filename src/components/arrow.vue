@@ -1,8 +1,7 @@
 <template>
   <div id="arrow">
-    <span @click="moveImage('prev')"><< </span>
-    &nbsp;&nbsp;&nbsp;
-    <span @click="moveImage('next')"> >> </span>
+    <span v-show="displayPrev" @click="moveImage('prev')"><< </span>
+    <span v-show="displayNext" @click="moveImage('next')"> >> </span>
   </div>
 </template>
 
@@ -34,22 +33,37 @@ export default {
         },
       ],
       pos: 0,
+      displayPrev: false,
+      displayNext: true,
     };
   },
   methods: {
     moveImage(direction) {
-      var allImage = this.iamges.length;
+      var allImage = this.iamges.length - 1;
 
       if (direction == 'next') {
-        if (this.pos < allImage) {
+        if (this.pos <= allImage) {
+          this.displayPrev = true;
           let newSrc = this.iamges[this.pos].src;
-          console.log(this.pos);
-          console.log(newSrc);
+          this.$emit('nextImageEvent', newSrc);
+          if (this.pos == allImage) {
+            this.displayNext = false;
+            this.pos--;
+          }
           this.pos++;
-        } else {
-          alert('STOP');
         }
       } else {
+        if (this.pos != 0) {
+          this.pos--;
+          this.displayNext = true;
+          let newSrc = this.iamges[this.pos].src;
+          this.$emit('nextImageEvent', newSrc);
+        } else {
+          this.pos++;
+          let newSrc = false;
+          this.displayPrev = false;
+          this.$emit('nextImageEvent', newSrc);
+        }
       }
     },
   },

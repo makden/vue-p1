@@ -1,6 +1,7 @@
 <template>
   <div id="images">
-    <img v-bind:src="srcpath" v-bind:title="titletext" />
+    <img v-bind:src="srcpath" v-bind:alt="srcpath" v-bind:title="titletext" />
+    <br /><b>{{ name }}</b>
   </div>
 </template>
 
@@ -10,15 +11,21 @@ export default {
   props: {
     srcpath: String,
     titletext: String,
+    name: String,
   },
-  emits: ['update:srcpath'],
+  data() {
+    return {
+      imgDef: this.srcpath,
+    };
+  },
 };
 </script>
 
 <style scoped>
 img {
   border: solid 1px #888;
-  width: 100%;
+  width: auto;
+  height: 50px;
 }
 
 #images {

@@ -15,6 +15,11 @@ export default {
     HelloWorld,
     headerBox,
   },
+  methods: {
+    // nextImage(v) {
+    //   alert(v);
+    // },
+  },
 };
 </script>
 
