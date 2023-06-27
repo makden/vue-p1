@@ -8,6 +8,7 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue';
 import headerBox from './components/header.vue';
+import axios from 'axios';
 
 export default {
   name: 'App',
@@ -16,6 +17,9 @@ export default {
     headerBox,
   },
   methods: {
+    getData() {
+      axios.get('ya.ru?df');
+    },
     // nextImage(v) {
     //   alert(v);
     // },
